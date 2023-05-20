@@ -2,26 +2,786 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --brand-color: #f6c31f;
+    --brand-color-2: #f5a623;
+    --action-color: var(--brand-color);
+    --action-hover-color: #c79e16;
+    --action-color-50p: rgba(0, 128, 255, 0.5);
+    --notification-color: #ff6168;
+    --notification-hover-color: #ff3d47;
+    --error-color: #ff001f;
+    --error-hover-color: #cc0018;
+    --confirm-color: #23ce88;
+    --confirm-hover-color: #1eae72;
+    --premium-marketing-1-color: #f6c31f;
+    --onboarding-complete-task-goal-tab-purple-color: #6573d3;
+    --action-button-text-color: #fff;
+    --backdrop-color: rgba(0, 0, 0, 0.5);
+    --pane-shadow-color: hsla(0, 0%, 53.7%, 0.25);
+    --focus-backdrop-color: hsla(0, 0%, 100%, 0.35);
+    --label-text-light-color: #fff;
+    --label-text-dark-color: #000;
+    --google-login-bg-color: var(--action-color);
+    --google-login-bg-hover-color: var(--action-hover-color);
+    --app-loader-bg-color: #0da5f3;
+    --app-loader-shodow-color: #9197a3;
+    --app-loader-checkmark-color: #fff;
+    --tooltip-theme-dark-bg-color: #161616;
+    --tooltip-theme-dark-text-color: #8e8e92;
+
+    --color-1: #ededed;
+    --color-2: #d8d8d8;
+    --color-3: #b2b2b2;
+    --color-4: var(--color-1);
+    --color-5: #ffc0ea;
+    --color-6: #b9d2fe;
+    --color-7: #aba3fe;
+    --color-8: #ffdd7d;
+    --color-9: #fd8c73;
+    --color-10: #ff3b53;
+    --color-lightest: var(--color-1);
+    --color-text-1: #030303;
+    --color-text-2: #9b9b9b;
+    --color-text-3: #d8d8d8;
+    --color-text-4: #424242;
+    --color-text-1-25p: rgba(74, 74, 74, 0.25);
+    --color-text-1-50p: rgba(74, 74, 74, 0.5);
+    --color-text-secondary: var(--color-text-1);
+    --text-secondary-1-color: var(--color-text-2);
+    --bg-color: #f6f6f6;
+    --bg-color1: var(--brand-color);
+    --bg-color2: var(--color-text-3);
+    --card-bg-1-color: #fff;
+    --card-bg-2-color: #fff;
+    --card-bg-3-color: #fff;
+    --card-bg-4-color: #fff;
+    --card-bg-1-color-90p: hsla(0, 0%, 100%, 0.9);
+    --card-bg-1-color-75p: hsla(0, 0%, 100%, 0.75);
+    --card-bg-1-color-60p: hsla(0, 0%, 100%, 0.6);
+    --card-bg-2-color-60p: hsla(0, 0%, 100%, 0.6);
+    --item-hover-bg-color: #f7f7f7;
+    --card-hover-bg-color: #f7f7f7;
+    --card-button-bg-color: transparent;
+    --drawer-bg-color: #fff;
+    --app-login-text-color: #000;
+    --separator-color: var(--color-2);
+    --sharing-remainder-bg-color: var(--color-1);
+    --sharing-remainder-text-color: var(--color-text-2);
+    --scrollbar-thumb-bg-color: var(--color-text-3);
+    --task-activity-other-bubble-bg-color: var(--color-1);
+    --badge-text-color: var(--color-text-2);
+    --badge-bg-color: var(--color-1);
+    --badge-text-hover-color: var(--color-text-2);
+    --badge-bg-hover-color: var(--action-button-text-color);
+    --smart-type-textfield-border-color: var(--color-2);
+    --textfield-border-color: var(--separator-color);
+    --textfield-settings-menu-bg-color: var(--color-1);
+    --myday-calendar-bg-color: var(--color-1);
+    --card-above-bg-color-highlighted: var(--color-1);
+    --card-above-separator-color: var(--color-2);
+    --card-item-bg-highlighted-color: var(--color-1);
+    --card-placholder-bg-color: var(--color-1);
+    --card-hover-border-color: var(--color-1);
+    --card-border-color: var(--color-1);
+    --dropdown-menu-item-bg-hovered-color: var(--color-1);
+    --dropdown-menu-item-bg-highlighted-color: var(--color-2);
+    --dropdown-menu-item-bg-highlighted-color-fat-light: var(--color-1);
+    --task-edit-pane-button-bg-color: var(--color-1);
+    --task-indicator-color: var(--color-text-2);
+    --settings-menu-bg-item-thumbnail-border-color: var(--color-2);
+    --settings-menu-bg-item-premium-button-text-color: var(--card-bg-1-color);
+    --payment-element-loading-bg-color: var(--bg-color);
+    --payment-element-request-button-border-color: var(--color-2);
+    --box-shadow-1-color: rgba(0, 0, 0, 0.1);
+    --box-shadow-transparent-1-color: transparent;
+    --box-shadow-weak-1-color: rgba(0, 0, 0, 0.05);
+    --box-shadow-strong-1-color: rgba(0, 0, 0, 0.3);
+    --box-shadow-2-color: var(--box-shadow-1-color);
+    --box-shadow-transparent-2-color: var(--box-shadow-transparent-1-color);
+    --box-shadow-weak-2-color: var(--box-shadow-weak-1-color);
+    --box-shadow-strong-2-color: var(--box-shadow-strong-1-color);
+    --disabled-opacity: 0.65;
+    --disabled-strong-opacity: 0.3;
+    --disabled-barely-visible-opacity: 0.1;
+    --activity-update-comment-color: var(--bg-color);
+    --activity-update-notification-bg-color: var(--card-bg-1-color);
+    --activity-update-notification-bg-interacted-color: var(--card-bg-1-color-60p);
+    --sticky-close-text-color: var(--color-text-1);
+
+    --jjext-color-brand: #1e80ff;
+    --jjext-color-brand-light: #e8f3ff;
+    --jjext-color-nav-title: #86909c;
+    --jjext-color-nav-popup-bg: #ffffff;
+    --jjext-color-primary: #1d2129;
+    --jjext-color-secondary-app: #4e5969;
+    --jjext-color-thirdly: #86909c;
+    --jjext-color-hover: #1e80ff;
+    --jjext-color-hover-thirdly: #86909c;
+    --jjext-color-dropdown-text: #1e80ff;
+    --jjext-color-divider: #e5e6eb;
+    --jjext-color-main-bg: #f4f5f5;
+    --jjext-color-secondary-bg: #ffffff;
+    --jjext-color-thirdly-bg: #f4f5f5;
+    --jjext-color-hover-bg: #e8f3ff;
+    --jjext-color-comment-bg: rgba(244, 245, 245, 0.5);
+    --jjext-hover-bg: linear-gradient(
+      90deg,
+      rgba(232, 243, 255, 0) 0%,
+      rgba(232, 243, 255, 0.8) 25.09%,
+      #e8f3ff 50.16%,
+      rgba(232, 243, 255, 0.8) 75.47%,
+      rgba(232, 243, 255, 0) 100%
+    );
+    --jjext-color-mask: rgba(0, 0, 0, 0.4);
+    --jjext-color-quick-nav-text: #ffffff;
+    --jjext-color-nav-bg: rgba(255, 255, 255, 0.13);
+    --jjext-color-nav-selected-border: rgba(229, 230, 235, 0.3);
+    --jjext-color-tips: #f53f3f;
+    --jjext-color-fourthly: #c9cdd4;
+    --jjext-color-shadow: rgba(0, 0, 0, 0.16);
+    --jjext-color-grey-triangle: #e5e6eb;
+    --jjext-color-icon-search: #ffffff;
+    --jjext-color-navbar-icon: #1e80ff;
+    --jjext-color-layout-dropdown-bg: rgba(232, 243, 255, 0.8);
+    --jjext-color-layout-title: #4e5969;
+    --jjext-color-layout-title-active: #1e80ff;
+    --jjext-color-layout-icon-outline: rgba(30, 128, 255, 0.5);
+    --jjext-color-layout-icon-fill: #ffffff;
+    --jjext-color-layer-gray-1-2: rgba(228, 230, 235, 0.5);
+    --jjext-color-layer-4: #ffffff;
+    --jjext-color-font-brand1-normal: #1e80ff;
+    --jjext-color-font-brand-4: #abcdff;
+    --jjext-color-font-1: #252933;
+    --jjext-color-font-2: #515767;
+    --jjext-color-font-3: #8a919f;
+    --jjext-color-font-4: #c2c8d1;
+    --jjext-color-font-white: #fff;
+    --jjext-color-layer-4-plugin: rgba(30, 128, 255, 0.05);
+    --jjext-brand-fill2-hover: rgba(30, 128, 255, 0.1);
+    --jjext-color-gray-0: #fff;
+    --jjext-color-gray-1-1: #e4e6eb;
+    --jjext-color-gray-1-2: rgba(228, 230, 235, 0.5);
+    --jjext-color-gray-1-3: #e4e6eb;
+    --jjext-color-gray-2: #f2f3f5;
+    --jjext-color-gray-3: #f7f8fa;
+    --jjext-color-background: #f2f3f5;
+    --jjext-color-layer-1: #fff;
+    --jjext-color-layer-2-1: #f7f8fa;
+    --jjext-color-layer-2-2: rgba(247, 248, 250, 0.7);
+    --jjext-color-layer-3-fill: #f2f3f5;
+    --jjext-color-layer-3-border: #e4e6eb;
+    --jjext-color-layer-4-dropdown: #fff;
+    --jjext-color-layer-5: #fff;
+    --jjext-color-brand-1-normal: #1e80ff;
+    --jjext-color-brand-2-hover: #1171ee;
+    --jjext-color-brand-3-click: #0060dd;
+    --jjext-color-brand-4-disable: #abcdff;
+    --jjext-color-brand-5-light: #eaf2ff;
+    --jjext-color-mask-1: rgba(0, 0, 0, 0.4);
+    --jjext-color-mask-2: #fff;
+    --jjext-color-mask-3: none;
+    --jjext-color-mask-6: #ffffff;
+    --jjext-color-brand-fill1-normal: rgba(30, 128, 255, 0.05);
+    --jjext-color-brand-fill2-hover: rgba(30, 128, 255, 0.1);
+    --jjext-color-brand-fill3-click: rgba(30, 128, 255, 0.2);
+    --jjext-color-brand-stroke1-normal: rgba(30, 128, 255, 0.3);
+    --jjext-color-brand-stroke2-hover: rgba(30, 128, 255, 0.45);
+    --jjext-color-brand-stroke3-click: rgba(30, 128, 255, 0.6);
+    --jjext-color-font_danger: #ff5132;
+    --jjext-color-shade-1: rgba(0, 0, 0, 0.4);
+    --jjext-color-popup: #fff;
+    --jjext-color-popover: rgba(0, 0, 0, 0.8);
+
+    --jjext-color-input-bg: #f4f5f5;
+    --jjext-color-input-error-bg: #ffece8;
+    --jjext-color-input-placeholder: #86909c;
+    --jjext-color-input-text: #4e5969;
+    --jjext-color-input-icon: #f53f3f;
+
+    --onboarding-header-height: 80px;
+    --onboarding-footer-height: 80px;
+
+    --CardMultiselectionToolbar__badge--height: calc(
+      var(--task-batching-toolbar-height) - var(--gutter) * 2
+    );
+
+    --TaskBatchToolbar__badge--height: calc(
+      var(--task-batching-toolbar-height) - var(--gutter) * 2
+    );
+
+    --TaskList-item-move-speed: var(--animation-speed-fast);
+
+    --TaskListTitle__h__groupSize-size: calc(var(--font-size-text-xsm) * 2);
+
+    --TabsNavigationButtonsBar__activeIndicator-height: 2px;
+    --TabsNavigationButtonsBar-default-color: var(--color-text-2);
+    --TabsNavigationButtonsBar-active-color: var(--color-text-1);
+
+    --TasksRoute__tasks-top: var(--app-header-height);
+
+    --CalendarDayViewAllDayEventItem-text-size: var(--font-size-text-xsm);
+
+    --CalendarDayViewEventItem-text-size: var(--font-size-text-xsm);
+    --CalendarDayViewEventItem-text-sm-size: var(--font-size-text-xsm);
+
+    --CalendarDayViewTaskItem-bg-color: var(--color-1);
+    --CalendarDayViewTaskItem-text-size: var(--font-size-text-xsm);
+    --CalendarDayViewTaskItem-text-sm-size: var(--font-size-text-xsm);
+
+    --FileAttachmentErrorModal-bar-height: 60px;
+
+    --FileAttachment-size: 29px;
+    --FileAttachment-padding: calc(var(--gutter) / 2);
+    --FileAttachment-remove-icon-size: 18px;
+    --FileAttachment-progress-bar-height: 7px;
+    --FileAttachment-progress-bar-radius: 4px;
+    --FileAttachment-progress-bar-fill-color: var(--color-text-2);
+    --FileAttachment-icon-border-radius: calc(var(--FileAttachment-size) * 0.1);
+
+    --RadioToggleButton-marker-offset: calc(
+      var(--radio-button-size) / 2 - var(--radio-button-marker-size) / 2 - 1px
+    );
+
+    --DateTimePicker2-header-height: 24px;
+
+    --AppHeaderSearch-width: 300px;
+    --AppHeaderSearch-icon-size: 24px;
+    --AppHeaderSearch-searchItem-height: 54px;
+    --AppHeaderSearch-searchItem-margin: 7px;
+    --max-items: 10;
+    --height-by-items: calc(var(--AppHeaderSearch-searchItem-height) * var(--max-items));
+    --height-by-viewport: calc(100vh - var(--app-header-height));
+
+    --TaskLabelsTooltipGrid-circle-size: 52px;
+
+    --TaskLabelsTooltipLabelsItem-overlay-opacity: 0.2;
+
+    --AppSidebarGoPremiumButton-max-width: calc(
+      var(--app-sidebar-width) - var(--app-sidebar-padding) * 2
+    );
+
+    --AppSidebarProfile-max-width: var(--app-sidebar-width);
+
+    --SettingsMenuDoneTasks-item-height: calc(var(--gutter) * 2.75);
+    --SettingsMenuDoneTasks-header-height: calc(
+      var(--gutter) * 2 + var(--font-size-text-sm) + var(--gutter) / 2 + var(--font-size-heading-sm) +
+        var(--gutter) * 2 + var(--toolbar-button-height) + var(--gutter)
+    );
+
+    --SettingsMenuProfileTab-profile-size: 66px;
+
+    --SettingsMenuBackgroundTab-thumbnail-src: none;
+    --SettingsMenuBackgroundTab-shadow-spread-width: 1px;
+    --SettingsMenuBackgroundTab-shadow-spread-width-selected: 2px;
+
+    --SettingsMenuBackgroundsThumbnails-thumbnail-size: calc(
+      var(--card-menu-item-height) - var(--card-menu-body-gap) * 2
+    );
+
+    --AppLogin-container-width: 1012px;
+    --AppLogin-loginForms-container-width: 440px;
+    --AppLogin-visual-container-width: calc(
+      var(--AppLogin-container-width) - var(--AppLogin-loginForms-container-width)
+    );
+    --AppLogin-padding: calc(var(--gutter) * 2);
+
+    --RadioButton-marker-offset: calc(
+      var(--radio-button-size) / 2 - var(--radio-button-marker-size) / 2
+    );
+
+    --TextField-padding-v: calc(var(--gutter) / 2);
+
+    --Switch-height: 24px;
+    --Switch-width: 50px;
+    --Switch-border-width: 2px;
+    --Switch-icon-size: 32px;
+    --Switch-transition-duration: var(--animation-speed-medium);
+    --Switch-cursor: pointer;
+
+    --ChipItem-height: calc(var(--font-size-text-xsm) * 2);
+
+    --PremiumPlanPickerButton-border-width: 3px;
+    --collapse-speed: var(--animation-speed-fast);
+
+    --premium-modal-width: 900px;
+    --premium-modal-padding: calc(var(--gutter) * 2);
+
+    --ButtonRounded-height: 34px;
+    --ButtonRounded-height-reminders: 30px;
+    --ButtonRounded-height-navbar: 40px;
+    --ButtonRounded-height-warning: 40px;
+    --ButtonRounded-borderRadius: calc(var(--ButtonRounded-height) / 2);
+    --DynamicTextArea-padding-v: calc(var(--gutter) / 2);
+    --DynamicTextArea-padding-h: var(--gutter);
+    --DynamicTextArea-padding-v-themeMinimal: calc(var(--gutter) / 4);
+    --DynamicTextArea-padding-h-themeMinimal: calc(var(--gutter) / 2);
+    --DynamicTextArea-padding-v-themeListTitle: 0;
+    --DynamicTextArea-padding-h-themeListTitle: calc(var(--gutter) / 4);
+    --DynamicTextArea-padding-v-themeLabelsModalLabelName: calc(var(--gutter) / 4);
+    --DynamicTextArea-padding-h-themeLabelsModalLabelName: var(--card-menu-padding-h);
+    --DynamicTextArea-hover-transition-duration: var(--animation-speed-fast);
+    --TextField-padding-h: var(--gutter);
+    --TextField-padding-h-headerSearchTheme: calc(var(--gutter) / 2);
+    --BareTimePicker-time-height: calc(var(--gutter) / 2 + var(--font-size-base));
+    --BareTimePicker-items-size: 5;
+
+    --card-bg-current-color: var(--card-bg-1-color);
+    --scrollbar-pane-bg-color: transparent;
+    --badge-text-highlighted-color: var(--action-color);
+    --app-login-text-secondary-text-color: var(--color-3);
+    --app-login-tab-padding: 10px;
+    --app-login-border-radius: 24px;
+    --login-button-text-color: #fff;
+    --login-button-email-bg-color: #fff;
+    --login-button-email-border-color: #fdfdfd;
+    --login-button-email-bg-highlighted-color: #f2f2f2;
+    --billing-rubrik-title-size: var(--font-size-text-xxsm);
+    --billing-rubrik-line-height: var(--line-height);
+    --billing-rubrik-title-weight: var(--font-weight-xbold);
+    --billing-rubrik-details-color: var(--color-text-2);
+    --billing-rubrik-ok: var(--confirm-color);
+    --billing-rubrik-warning: var(--notification-color);
+    --textfield-text-color: var(--color-text-1);
+    --textfield-text-color-focus: var(--color-text-1);
+    --card-item-bg-color: var(--card-bg-1-color);
+    --card-item-text-color: var(--color-text-1);
+    --card-above-bg-color: var(--card-bg-2-color);
+    --card-above-color: var(--color-text-1);
+    --card-above-active-color: var(--action-color);
+    --card-above-disabled-color: var(--color-text-1-25p);
+    --close-button-color: var(--color-text-2);
+    --confirm-dialog-button-light-theme-color: var(--color-text-4);
+    --toggle-button-height: 32px;
+    --toggle-button-horizontal-padding: 12px;
+    --toggle-button-line-height: 16px;
+    --toggle-button-toggle-title-margin-inline-start: 7px;
+    --toggle-button-toggle-icon-width: 12px;
+    --toggle-button-toggle-icon-height: 12px;
+    --smart-type-textfield-bg-color: var(--card-bg-3-color);
+    --team-member-bg-color: var(--card-bg-1-color);
+    --team-member-border-radius: var(--border-radius);
+    --team-member-padding: 16px 20px;
+    --team-member-remove-padding: 20px 0;
+    --team-member-remove-width: 300px;
+    --team-member-shadow: var(--dropdown-menu-shadow);
+    --team-member-gap: 4px;
+    --team-member-manager-tooltip-width: 398px;
+    --team-member-manager-tooltip-height: 520px;
+    --team-member-manager-item-gap: 18px;
+    --team-member-manager-confirmation-color: var(--color-4);
+    --textfield-bg-color: var(--card-bg-1-color);
+    --textfield-bg-minimal-color: transparent;
+    --textfield-bg-minimal-focus-color: var(--bg-color);
+    --textfield-placeholder-color: var(--color-text-3);
+    --app-sidebar-text-color: var(--color-text-secondary);
+    --app-sidebar-em-text-color: var(--color-text-1);
+    --app-sidebar-highlighted-text-color: var(--action-color);
+    --app-sidebar-icon-normal-color: var(--color-3);
+    --app-sidebar-item-highlighted-color: var(--card-item-bg-highlighted-color);
+    --app-sidebar-emoji-size: 20px;
+    --app-settings-popup-padding: 12px;
+    --app-settings-border-radius: 24px;
+    --app-settings-modal-width: var(--modal-dialog-width);
+    --task-item-border-color: var(--card-border-color);
+    --task-item-border-selected-color: var(--action-color);
+    --task-item-bg-color: var(--card-item-bg-color);
+    --task-item-bg-highlighted-color: var(--card-above-bg-color-highlighted);
+    --task-item-text-checked-color: var(--color-2);
+    --task-controls-color: var(--color-2);
+    --task-controls-focus-color: var(--action-color);
+    --task-edit-pane-button-icon-color: var(--color-3);
+    --task-edit-pane-gap-h: calc(var(--gutter) / 16 * 20);
+    --task-edit-pane-button-font-size: var(--font-size-text-xsm);
+    --task-edit-pane-button-font-weight: var(--font-weight-medium);
+    --task-edit-pane-button-height: 32px;
+    --task-edit-pane-button-border-radius: 4px;
+    --task-assignee-modal-width: 400px;
+    --task-assignee-modal-height: 308px;
+    --task-assignee-modal-border-radius: 8px;
+    --task-assignee-box-shadow: 4px 10px 30px rgba(0, 0, 0, 0.18);
+    --task-assignee-search-no-result-gap: 18px;
+    --file-attachment-icon-color: var(--task-indicator-color);
+    --file-attachment-progress-bar-color: var(--color-text-3);
+    --file-attachment-trash-icon-size: 24px;
+    --file-attachment-spacing: calc(var(--gutter) / 2);
+    --toolbar-button-color: var(--color-text-1);
+    --toolbar-button-hover-and-focus-color: var(--action-color);
+    --toolbar-button-bg-color: var(--card-bg-1-color);
+    --toolbar-shadow: var(--pane-box-shadow);
+    --toolbar-tooltip-padding: 7px;
+    --toolbar-tooltip-border-radius: 3px;
+    --toolbar-tooltip-top-offset: 3px;
+    --toolbar-team-members-invite-icon-gap: 4px;
+    --toolbar-team-members-invite-members-margin-inline-start: 7px;
+    --onboarding-pro-box-color: var(--color-1);
+    --onboarding-pro-box-radius: 24px;
+    --onboarding-smart-text-line-height: 50px;
+    --onboarding-smart-text-dropdown-width: 200px;
+    --onboarding-integration-raidus: 12px;
+    --onboarding-integration-card-height: 148px;
+    --onboarding-integration-card-width: 134px;
+    --sharing-avatar-light-text-color: var(--label-text-light-color);
+    --sharing-avatar-dark-text-color: rgba(0, 0, 0, 0.6);
+    --default-font-family: 'Inter-local', 'Helvetica Neue', Helvetica, Arial, 'Roboto', sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+    --font-weight-xbold: 700;
+    --heading-line-height: 1.1;
+    --line-height: 1.4;
+    --line-height-text-xsm: 16px;
+    --line-height-textfield: 16px;
+    --font-size-heading-xlg: 44px;
+    --font-size-heading-lg: 28px;
+    --font-size-heading-md: 24px;
+    --font-size-heading-sm: 20px;
+    --font-size-text-xlg: 18px;
+    --font-size-text-llg: 17px;
+    --font-size-text-lg: 16px;
+    --font-size-text-md: 15px;
+    --font-size-text-sm: 14px;
+    --font-size-text-xsm: 12px;
+    --font-size-text-xxsma: 11px;
+    --font-size-text-xxsm: 10px;
+    --font-size-text-xxxsm: 8px;
+    --font-size-base: var(--font-size-text-md);
+    /*--label-font-size: var(--font-size-text-xs);*/
+    --label-font-weight: var(--font-weight-medium);
+    --label-letter-spacing: 1px;
+    --subheading-font-size: var(--font-size-text-xsm);
+    --subheading-font-weight: var(--font-weight-xbold);
+    --subheading-letter-spacing: 0.5px;
+    --sidebar-item-letter-spacing: -0.3px;
+    --card-header-title-font-size: var(--font-size-text-lg);
+    --border-radius-small: 2px;
+    --border-radius-medium: 6px;
+    --border-radius: 8px;
+    --card-border-radius: 16px;
+    --card-listed-border-radius: 6px;
+    --tooltip-border-radius: 4px;
+    --modal-border-radius: 12px;
+    --kbd-border-radius: 3px;
+    --modal-dialog-width: 400px;
+    --modal-dialog-large-width: 600px;
+    --modal-dialog-max-height: 600px;
+    --bar-height: 60px;
+    --radio-button-size: 24px;
+    --radio-button-marker-size: 16px;
+    --radio-button-modern-theme-size: 20px;
+    --radio-button-modern-theme-marker-size: 8px;
+    --login-button-height: 60px;
+    --login-form-height: 44px;
+    --login-form-bottom-margin: var(--gutter);
+    --login-terms-field-width: 300px;
+    --box-shadow-focus-ring-md-size: 6px;
+    --box-shadow-focus-ring-md: 0 0 0 var(--box-shadow-focus-ring-md-size) var(--pane-shadow-color);
+    --box-shadow-focus-ring-small: 0 0 0 3px var(--pane-shadow-color);
+    --box-shadow-focus-ring-inside: inset 0 0 0 3px var(--pane-shadow-color);
+    --drag-rotation: 5deg;
+    --gutter: 16px;
+    --pane-h-gutter: 24px;
+    --app-header-z-index: 2;
+    --under-app-sidebar-z-index: 3;
+    --app-sidebar-z-index: 4;
+    --myday-sidebar-z-index: 4;
+    --myday-sidebar-handle-z-index: 5;
+    --app-onboarding-z-index: 6;
+    --drawer-z-index: 7;
+    --notification-bar-z-index: 999;
+    --tooltip-z-index: 1000;
+    --app-active-header-z-index: 1001;
+    --app-active-header-filter-z-index: 1002;
+    --settings-z-index: 1002;
+    --settings-sync-tooptip-z-index: 1003;
+    --small-info-tooltip-z-index: 1004;
+    --notifications-z-index: 2000;
+    --drag-layer-item-z-index: 9999;
+    --smart-type-animted-item-z-index: 9999;
+    --sticky-backdrop-z-index: calc(var(--myday-sidebar-handle-z-index) + 1);
+    --sticky-container-z-index: calc(var(--sticky-backdrop-z-index) + 1);
+    --sticky-backdrop-z-index-maximized: 4;
+    --sticky-container-z-index-maximized: 4;
+    --app-sidebar-width: 240px;
+    --app-sidebar-close-width: 88px;
+    --app-sidebar-padding: 24px;
+    --app-sidebar-open-offset: calc(
+      var(--app-sidebar-width) - var(--app-sidebar-close-width) - var(--my-day-shadow-gap)
+    );
+    --app-sidebar-create-task-button-height: 40px;
+    --app-sidebar-in-out-transition-speed: var(--animation-speed-fast);
+    --app-sidebar-item-h-padding: var(--app-sidebar-padding);
+    --app-sidebar-item-height: 40px;
+    --app-sidebar-item-top-text-offset: 8px;
+    --app-sidebar-item-avatar-size: 40px;
+    --app-sidebar-item-icon-size: 24px;
+    --app-sidebar-lock-icon-size: 20px;
+    --app-sidebar-category-icon-margin: 11px;
+    --badge-size: 22px;
+    --app-sidebar-profile-gap: 12px;
+    --app-sidebar-profile-margin: 16px;
+    --myday-sidebar-width: 378px;
+    --myday-sidebar-transition-speed: var(--app-sidebar-in-out-transition-speed);
+    --myday-sidebar-transition-in: var(--myday-sidebar-transition-speed) ease-out
+      var(--myday-sidebar-transition-speed);
+    --myday-sidebar-transition-out: var(--myday-sidebar-transition-speed) ease-in;
+    --myday-sidebar-top-gap: 24px;
+    --myday-sidebar-bottom-gap: 16px;
+    --myday-sidebar-padding: 6px;
+    --myday-sidebar-shadow-height: 12px;
+    --myday-entry-labels-height: 8px;
+    --myday-entry-labels-h-gap: 10px;
+    --myday-entry-content-gap: 10px;
+    --myday-breadcrumbs-height: 15px;
+    --my-day-shadow-gap: 10px;
+    --myday-empty-state-color1: #69adff;
+    --myday-empty-state-color2: var(--brand-color);
+    --myday-empty-state-color: linear-gradient(
+      180deg,
+      var(--myday-empty-state-color1) -30%,
+      var(--myday-empty-state-color2) 70%
+    );
+    --myday-empty-state-color-hover: linear-gradient(
+      180deg,
+      var(--myday-empty-state-color1) -20%,
+      var(--myday-empty-state-color2) 70%
+    );
+    --app-header-height: calc(var(--app-sidebar-padding) * 2 + var(--app-sidebar-item-avatar-size));
+    --app-header-control-h-gap: 30px;
+    --app-header-control-width: calc(70px + var(--toolbar-button-bar-h-padding) * 3);
+    --app-header-icon-size: 36px;
+    --toolbar-height: var(--app-sidebar-create-task-button-height);
+    --toolbar-button-bar-h-padding: calc(var(--toolbar-height) / 2);
+    --toolbar-button-h-padding: calc(var(--gutter) / 4 * 3);
+    --toolbar-button-height: var(--toolbar-height);
+    --toolbar-icon-size: 24px;
+    --toolbar-avatar-icon-size: 20px;
+    --notification-bar-height: 36px;
+    --notification-bar-error-color: #ff6168;
+    --card-menu-header-height: 60px;
+    --card-menu-footer-height: 60px;
+    --card-menu-padding-h: var(--gutter);
+    --card-menu-item-height: 44px;
+    --card-menu-body-gap: 10px;
+    --card-menu-position-inline-end: 11px;
+    --card-menu-position-top: 10px;
+    --default-card-inner-padding-h: calc(var(--gutter) * 1.5);
+    --default-card-inner-padding-v: calc(var(--gutter) / 2);
+    --template-thumbnail-width: 500px;
+    --template-thumbnail-hover-bg-color: var(--card-bg-1-color-90p);
+    --dropdown-menu-bg-highlighted-color: var(--color-2);
+    --dropdown-menu-body-gap: 10px 0 8px;
+    --dropdown-menu-shadow: 4px 10px 30px var(--box-shadow-1-color);
+    --dropdown-menu-item-height: 16px;
+    --dropdown-menu-item-padding-v: 12px;
+    --dropdown-menu-item-padding-h: 16px;
+    --dropdown-menu-modern-item-padding-inline-end: 23px;
+    --dropdown-menu-modern-item-padding-inline-start: 51px;
+    --dropdown-menu-modern-selected-icon-inline-start: 20px;
+    --dropdown-menu-condensed-item-padding-inline-end: 46px;
+    --scrollbar-width: 5px;
+    --scrollbar-border-radius: 10rem;
+    --pane-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 2px 18px rgba(0, 0, 0, 0.08);
+    --myday-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02), 0 2px 18px rgba(0, 0, 0, 0.05);
+    --pane-box-shadow-strong: 0 2px 10px 0 var(--box-shadow-strong-1-color);
+    --pane-box-shadow-large: 0 2px 15px 0 var(--box-shadow-1-color);
+    --pane-box-shadow-large-strong: 4px 10px 30px 0 var(--box-shadow-strong-1-color);
+    --pane-box-shadow-2: 0 2px 10px 0 var(--box-shadow-2-color);
+    --pane-box-shadow-inversed: 0 -2px 10px 0 var(--box-shadow-1-color);
+    --pane-blip-box-shadow: var(--pane-box-shadow-large), 0 0 0 6px var(--action-color-50p);
+    --pane-min-width: 335px;
+    --pane-max-width: 570px;
+    --pane-myday-max-width: 600px;
+    --section-pane-width: 300px;
+    --section-pane-gutter: 24px;
+    --section-padding-top: 20px;
+    --section-padding-side: 16px;
+    --section-padding-bottom: 12px;
+    --section-padding: var(--section-padding-top) var(--section-padding-side)
+      var(--section-padding-bottom);
+    --section-min-height: 112px;
+    --section-has-cards-min-height: 169px;
+    --section-title-input-height: 20px;
+    --section-top-shadow: 0 5px 20px;
+    --section-bottom-shadow: 0 -5px 20px;
+    --section-shadow: var(--pane-box-shadow);
+    --add-section-height: 62px;
+    --add-section-title-color: var(--color-text-4);
+    --card-padding: 13px;
+    --card-list-gap: 8px;
+    --card-title-line-height: 18px;
+    --card-title-font-size: 14px;
+    --card-title-letter-spacing: -0.3px;
+    --card-tag-icon-color: var(--brand-color);
+    --card-tag-color-default: var(--color-3);
+    --add-card-label-color: var(--color-3);
+    --add-card-title-color: var(--color-text-4);
+    --add-card-border-radius: 6px;
+    --add-card-close-input-height: 40px;
+    --add-card-open-input-height: 64px;
+    --add-card-padding: 12px;
+    --add-card-icon-gap: 14px;
+    --add-card-line-height: 16px;
+    --add-card-button-size: 36px;
+    --card-duedate-calendar-width: 328px;
+    --card-duedate-calendar-shadow: 0 6px 20px var(--box-shadow-1-color);
+    --card-duedate-calendar-padding-bottom: 21px;
+    --card-duedate-calendar-padding: 5px 16px 0;
+    --card-duedate-calendar-padding-x: 16px;
+    --card-duedate-calendar-footer: 49px;
+    --card-duedate-modal-border-radius: 8px;
+    --card-duedate-modal-box-shadow: 4px 10px 30px rgba(0, 0, 0, 0.18);
+    --card-duedate-time-picker-width: 190px;
+    --card-duedate-time-picker-max-height: 240px;
+    --card-button-size: 36px;
+    --card-checklist-item-gap: 4px;
+    --card-checklist-hover-bg-color: var(--card-hover-bg-color);
+    --card-checklist-hover-border-color: var(--card-hover-border-color);
+    --card-checklist-placholder-bg-color: var(--card-placholder-bg-color);
+    --activity-update-column-gap: 8px;
+    --activity-update-comment-padding: 10px;
+    --teams-tags-tooltip-content-width: 330px;
+    --teams-tags-tooltip-content-border-radius: var(--border-radius-medium);
+    --teams-tags-tooltip-content-header-height: 46px;
+    --teams-tags-tooltip-content-footer-height: 50px;
+    --teams-tags-tooltip-content-tag-row-height: 50px;
+    --browse-templates--modal-width: 1165px;
+    --browse-templates--modal-max-height: 720px;
+    --browse-templates--modal-min-height: 500px;
+    --choose-plan--modal-width: 734px;
+    --browse-boards--modal-width: 778px;
+    --browse-boards--modal-max-height: 725px;
+    --browse-boards--modal-min-height: 500px;
+    --browse-boards-shadow-height: 12px;
+    --dynamic-search-component-height: 24px;
+    --dynamic-search-field-initial-width: 24px;
+    --dynamic-search-field-active-width: 185px;
+    --task-h-padding: calc(var(--gutter) / 16 * 20);
+    --task-v-padding: calc(var(--gutter) / 4);
+    --task-item-height: 50px;
+    /*--task-item-label-padding-inline-end: var(--task-controls-colorwidth);*/
+    /*--task-item-text-label-width: calc(100% - var(--task-item-label-padding-right));*/
+    --task-item-checkbox-button-size: 18px;
+    --task-modal-svg-gap: 12px;
+    --task-tag-icon-color: var(--brand-color);
+    --task-remind-icon-color: var(--notification-color);
+    --task-list-icon-color: var(--brand-color-2);
+    --sharing-google-contacts-banner-height: 56px;
+    --side-spinner-offset: -21px;
+    --side-spinner-size: 13px;
+    --notifications-mini-toast-height: 56px;
+    --app-theme-background-image-hd: none;
+    --app-theme-background-image-4k: none;
+    --backdrop-animation-speed: var(--animation-speed-medium);
+    --backdrop-position-top: 60px;
+    --backdrop-modal-position-top-max-height: calc(100vh - var(--backdrop-position-top) * 2 - 2px);
+    --backdrop-modal-blurred-blur: 12px;
+    --backdrop-modal-blurred-color: rgba(0, 0, 0, 0.3);
+    --reminders-modal-width: 460px;
+    --date-picker-modal-width: 480px;
+    --create-board-modal-margin-top: 28px;
+    --create-board-modal-width: 600px;
+    --create-board-modal-min-height: 273px;
+    --create-board-modal-padding: 24px;
+    --create-board-modal-input-margin: 10px;
+    --create-board-modal-input-size: 28px;
+    --create-board-modal-input-height: 34px;
+    --create-board-modal-header-height: 20px;
+    --create-board-modal-submit-width: 92px;
+    --create-board-modal-shadow: 0 6px 36px;
+    --suggestions-filter-modal-width: 259px;
+    --suggestions-filter-tag-height: 24px;
+    --onboarding-card-icon-height: 102px;
+    --onboarding-card-height: 255px;
+    --onboarding-card-width: 289px;
+    --onboarding-my-day-section-width: 344px;
+    --onboarding-my-day-section-height: 334px;
+    --onboarding-text-field-height: 40px;
+    --onboarding-border-radius: 24px;
+    --onboarding-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 2px 18px rgba(0, 0, 0, 0.08);
+    --onboarding-letter-spacing: -0.3px;
+    --onboarding-empty-state-width: 220px;
+    --onboarding-task-item-width: 200px;
+    --workspace-management-modal-width: 570px;
+    --workspace-management-modals-content-margin-top: 28px;
+    --workspace-management-modals-content-width: 600px;
+    --workspace-management-modals-content-min-height: 273px;
+    --workspace-management-modals-content-padding: 24px;
+    --workspace-management-modals-content-padding-top: 38px;
+    --workspace-management-modals-content-input-margin: 10px;
+    --workspace-management-modals-content-input-size: 28px;
+    --workspace-management-modals-content-input-height: 34px;
+    --workspace-management-modals-content-header-height: 20px;
+    --workspace-management-modals-content-submit-width: 92px;
+    --workspace-management-modals-content-shadow: 0 6px 36px;
+    --workspace-cancel-subscription-modal-width: 525px;
+    --workspace-cancel-subscription-modal-padding-y: 24px;
+    --workspace-cancel-subscription-modal-padding-x: 40px;
+    --upgrade-plan-modal-width: 593px;
+    --upgrade-plan-modal-content-padding: 48px;
+    --upgrade-plan-modal-close-button-position: 24px;
+    --plan-picker-border-radius: 12px;
+    --plan-picker-padding: 12px;
+    --plan-picker-save-color: var(--confirm-color);
+    --drawer-width: 360px;
+    --drawer-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    --drawer-padding: 16px;
+    --card-drawer-width: 332px;
+    --new-messages-icon-wrapper-size: 28px;
+    --custom-date-tooltip-width: 340px;
+    --smart-type-quick-add-base-size: 40px;
+    --smart-type-quick-add-option-height: 50px;
+    --smart-type-quick-animation-speed: var(--animation-speed-medium);
+    --smart-type-quick-replace-animation-speed: 300ms;
+    --smart-type-reminder-modal-width: 480px;
+    --task-batching-toolbar-height: 56px;
+    --task-batching-toolbar-width: 515px;
+    --label-modal-label-item-height: 56px;
+    --animation-delay-speed: 100ms;
+    --animation-delay-speed-fast: 50ms;
+    --animation-delay-speed-medium: 400ms;
+    --animation-delay-slow: 600ms;
+    --animation-speed-very-fast: 100ms;
+    --animation-speed-fast: 200ms;
+    --animation-speed-medium: 400ms;
+    --animation-speed-slow: 600ms;
+    --animation-speed-very-slow: 1000ms;
+    --animation-speed-focus-ring: 400ms;
+    --animation-focus-transition: 400ms;
+    --animation-pane-enter-speed: 300ms;
+    --animation-delay-check-swipe: 300ms;
+    --translate-start-half: -50%;
+    --translate-start-full: -100%;
+    --translate-end-half: 50%;
+    --translate-end-full: 100%;
   }
 }
 
+body,
+html {
+  -webkit-font-smoothing: unset !important;
+  font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif,
+    BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial !important;
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  min-height: 100vh;
+  min-width: 640px;
+  margin: 0;
+  background-attachment: fixed;
+  background-color: #cad8e4;
+}
+
+body,
+body:before {
+  background-size: 100vw 100vh;
+  background-image: radial-gradient(
+      50% 50% at 50% 50%,
+      hsla(0, 0%, 100%, 0.75) 0%,
+      hsla(0, 0%, 100%, 0) 100%
+    ),
+    linear-gradient(180deg, #cad8e4 0%, #cedce8 15%, #edf0f8 50%);
 }
