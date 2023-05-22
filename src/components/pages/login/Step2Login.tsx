@@ -37,7 +37,7 @@ const Step2Login = (props: Props) => {
 
     try {
       setLoading(true)
-
+      // TODO: 使用 request 重构代码
       // fetch 请求 post
       const res = await fetch(`/api/register`, {
         method: 'POST',
@@ -48,7 +48,7 @@ const Step2Login = (props: Props) => {
           email: props.email,
           name: name,
           password: password,
-          platform: 'web',
+          platform: 'web'
         })
       })
 
@@ -57,8 +57,8 @@ const Step2Login = (props: Props) => {
       setLoading(false)
 
       // if (data.user && data.Error === '') {
-        // 注册成功
-        props.nextStep(1)
+      // 注册成功
+      props.nextStep(1)
       // }
     } catch (e) {
       setLoading(false)

@@ -10,3 +10,20 @@ export const check_email = (email: string) => {
     email
   })
 }
+
+// 注册
+export const register = (name: string, password: string, email: string) => {
+  return request('post', FLYBOOM_BASEURL + '/User/Register', {
+    name,
+    password,
+    email
+  })
+}
+
+// 登录
+export const login = (name: string, password: string) => {
+  return request('post', FLYBOOM_BASEURL + '/User/Login', {
+    name,
+    password
+  })
+}
