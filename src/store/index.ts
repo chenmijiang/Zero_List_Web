@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import demoReducer from './demo.slice'
+import userReducer from '@/store/user.slice'
 
 let store = configureStore({
   preloadedState: {},
   reducer: {
-    demoReducer
+    user: userReducer
   },
-  devTools: process.env.NODE_ENV === 'production' ? false : true
+  devTools: process.env.NODE_ENV !== 'production'
 })
 
 export { store }

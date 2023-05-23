@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { getLoginUserCookie, logoutCookie } from '@/utils/auth'
+import request from '@/utils/request'
+import toast from 'react-hot-toast'
 
 type Props = {
   children: React.ReactNode
@@ -10,15 +13,40 @@ const TokenChecker = ({ children }: Props) => {
   const [check, setCheck] = useState(false)
 
   useEffect(() => {
-    // 模拟检查用户 token 的逻辑，这里假设 token 存储在 localStorage 中
-    const token = localStorage.getItem('token')
+    // 检查是否有 token
+    const token = getLoginUserCookie()
 
-    // 这里可以根据实际需求添加其他 token 失效的判断逻辑
-
-    if (!token && router.pathname !== '/login') {
-      router.push('/login')
+    setCheck(true)
+    if (!token) {
+      if (router.pathname !== '/login') {
+        router.replace('/login')
+      } else {
+        setCheck(true)
+      }
     } else {
-      setCheck(true)
+      setTimeout(() => {
+        setCheck(true)
+      }, 2000)
+      // 检查 token 是否过期
+      request('get', '/api/refresh_token')
+        .then((data: any) => {
+          // token 过期
+          if (!data.token) {
+            // 清除 本地 token，cookie，跳转到登录页
+            logoutCookie()
+            toast.error('登录信息已过期，请重新登录')
+            if (router.pathname !== '/login') {
+              router.push('/login')
+            }
+            return
+          }
+          if (router.pathname === '/login') {
+            router.push('/myday')
+          }
+        })
+        .catch((err: any) => {
+          console.log(err)
+        })
     }
   }, [router])
 

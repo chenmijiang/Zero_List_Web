@@ -5,6 +5,11 @@ import styled from 'styled-components'
 
 import ScrollLoadingAnimation from '@/components/common/ScrollLoadingAnimation'
 import { debounce, throttle } from '@/utils'
+import toast from 'react-hot-toast'
+import request from '@/utils/request'
+import { useDispatch } from 'react-redux'
+import { setUser } from '@/store/user.slice'
+import { saveLoginCookie } from '@/utils/auth'
 
 type Props = {
   nextStep: (step: number) => void
@@ -20,6 +25,9 @@ const Step1Login = (props: Props) => {
 
   const router = useRouter()
 
+  // dispatch 保存用户信息
+  const dispatch = useDispatch()
+
   // 输入了密码，提交按钮可用
   const handlePasswordChange = () => {
     const password = inputRef.current?.value
@@ -33,35 +41,46 @@ const Step1Login = (props: Props) => {
   const handleSubmit = async () => {
     const password = inputRef.current?.value
 
-    try {
-      setLoading(true)
+    if (!password) return
 
-      // fetch 请求 post
-      const res = await fetch(`/api/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+    setLoading(true)
+
+    toast.promise(
+      request(
+        'post',
+        '/api/login',
+        null,
+        {
           email: props.email,
           password: password,
           platform: 'web',
           client_id: '761e9a31-ed2c-4614-b329-8db12f3f1768'
-        })
-      })
-
-      const data = await res.json()
-
-      setLoading(false)
-
-      if (data.user && data.Error === '') {
-        // 登录成功
-        router.replace('/')
+        },
+        {
+          'Content-Type': 'application/json'
+        }
+      ),
+      {
+        loading: '登录中...',
+        success: (data: any) => {
+          setLoading(false)
+          if (data.token !== '' && data.user !== null) {
+            // 登录成功返回的用户信息
+            saveLoginCookie(data.token)
+            // 保存用户信息到 redux
+            dispatch(setUser(data.user))
+            // 登录成功
+            router.replace('/myday')
+          }
+          return data.message
+        },
+        error: (err: any) => {
+          setLoading(false)
+          setError(true)
+          return '登录失败'
+        }
       }
-    } catch (e) {
-      setLoading(false)
-      setError(true)
-    }
+    )
   }
 
   const [showPassword, setShowPassword] = useState(false)
@@ -254,6 +273,7 @@ const FormContent = styled.div`
   .textfield--disabled {
     cursor: not-allowed;
   }
+
   .textfield {
     padding: 0 var(--TextField-padding-h);
     display: flex;
@@ -283,6 +303,7 @@ const FormContent = styled.div`
     height: 100%;
     margin: 0;
   }
+
   .input {
     width: 100%;
     padding: 0;

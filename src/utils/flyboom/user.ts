@@ -20,10 +20,13 @@ export const register = (name: string, password: string, email: string) => {
   })
 }
 
-// 登录
-export const login = (name: string, password: string) => {
-  return request('post', FLYBOOM_BASEURL + '/User/Login', {
-    name,
+// 查询用户
+export const get_user = check_email
+
+// 重设密码
+export const reset_password = (email: string, password: string) => {
+  return request('post', FLYBOOM_BASEURL + '/User/ResetPassword', {
+    email,
     password
   })
 }

@@ -7,6 +7,9 @@ import '@/utils/init-data'
 
 import Head from 'next/head'
 import TokenChecker from '@/components/common/TokenChecker'
+import { Toaster } from 'react-hot-toast'
+import { Provider } from 'react-redux'
+import { store } from '@/store'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -26,9 +29,12 @@ export default function App({ Component, pageProps }: AppProps) {
           href="/favicon.ico"
         />
       </Head>
-      <TokenChecker>
-        <Component {...pageProps} />
-      </TokenChecker>
+      <Provider store={store}>
+        <TokenChecker>
+          <Component {...pageProps} />
+          <Toaster />
+        </TokenChecker>
+      </Provider>
     </>
   )
 }

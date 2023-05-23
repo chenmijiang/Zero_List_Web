@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
+import cookie from 'react-cookies'
+
+const secretKey: string = process.env.TOKEN_SECRET_KEY || '0123456789'
 
 // 生成 token
 export function generateToken(user: any) {
-  const secretKey: string = process.env.TOKEN_SECRET_KEY || '0123456789'
   const payload = {
     name: user.name,
     email: user.email
@@ -13,42 +14,50 @@ export function generateToken(user: any) {
     expiresIn: '6h'
   }
 
-  const token = jwt.sign(payload, secretKey, options)
-  return token
+  return jwt.sign(payload, secretKey, options)
 }
 
 // 验证 token
-export async function verifyToken(token: string) {
-  const secretKey: string = process.env.TOKEN_SECRET_KEY || '0123456789'
+export function verifyToken(token: string) {
+  return jwt.verify(token, secretKey)
+}
 
-  return new Promise<any>((resolve, reject) => {
-    jwt.verify(token, secretKey, (err, data) => {
-      if (err) {
-        reject(err)
-      }
-      resolve(data)
-    })
+// 获取当前用户cookie
+export const getLoginUserCookie = () => {
+  return cookie.load('userinfo')
+}
+
+// 用户登录，保存cookie
+export const saveLoginCookie = (
+  cookieStr: string,
+  userinfo: string = 'https://github.com/chenmijiang/'
+) => {
+  cookie.save('userinfo', userinfo, {
+    path: '/',
+    maxAge: 60 * 60 * 6,
+    expires: new Date(Date.now() + 60 * 60 * 6)
   })
+  document.cookie = parseCookie(cookieStr)
 }
 
-// 密码加密
-export async function hashPassword(password: string): Promise<string> {
-  const saltRounds = 10 // Number of salt rounds for hashing
+// 刷新登录
+export const refreshUserCookie = saveLoginCookie
 
-  try {
-    const hashedPassword = await bcrypt.hash(password, saltRounds)
-    return hashedPassword
-  } catch (error) {
-    throw new Error('Failed to hash password')
-  }
+// 用户登出，删除cookie
+export const logoutCookie = () => {
+  cookie.save('ZERO_LIST_USER', '', {})
+  cookie.remove('ZERO_LIST_USER')
+  cookie.remove('userinfo')
 }
 
-// 密码比对
-export async function comparePassword(password: string, hashedPassword: string): Promise<boolean> {
-  try {
-    const match = await bcrypt.compare(password, hashedPassword)
-    return match
-  } catch (error) {
-    throw new Error('Failed to compare password')
-  }
+// cookie 解析
+export const parseCookie = (cookieStr: string) => {
+  const cookies = cookieStr.split(/;(?=\S)/)
+  let res: string[] = []
+  cookies.forEach((item) => {
+    if (item.match(/^(ZERO_LIST_USER)/)) {
+      res.push(item)
+    }
+  })
+  return res.join(';')
 }

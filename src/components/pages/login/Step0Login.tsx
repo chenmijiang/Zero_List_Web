@@ -37,15 +37,16 @@ const Step0Login = (props: Props) => {
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const email = inputRef.current?.value
 
     if (!email) return
 
     setLoading(true)
+    try {
+      const loadingId = toast.loading('检查邮箱中...')
 
-    toast.promise(
-      request(
+      const data = await request(
         'post',
         '/api/check_email',
         null,
@@ -53,27 +54,25 @@ const Step0Login = (props: Props) => {
         {
           'Content-Type': 'application/json'
         }
-      ),
-      {
-        loading: '检查邮箱中...',
-        success: (data: any) => {
-          console.log(data)
-          setLoading(false)
-          props.postMessageEmail(email)
-          if (data.user_exists) {
-            props.nextStep(1)
-          } else {
-            props.nextStep(2)
-          }
-          return '邮箱检查成功'
-        },
-        error: (err) => {
-          setLoading(false)
-          console.log(err.message)
-          return '未知错误'
-        }
+      )
+      setLoading(false)
+      props.postMessageEmail(email)
+      toast.dismiss(loadingId)
+
+      // @ts-ignore
+      if (data.user_exists) {
+        toast.success('邮箱检查成功')
+        props.nextStep(1)
+      } else {
+        toast.error('邮箱不存在')
+        props.nextStep(2)
       }
-    )
+    } catch (err: any) {
+      setLoading(false)
+      console.log(err.message)
+      toast.error('未知错误')
+      return
+    }
   }
   return (
     <div className="mb-[70px] h-full justify-center flex flex-col items-center">

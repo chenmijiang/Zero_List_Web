@@ -15,13 +15,13 @@ const handler = async function (req: NextApiRequest, res: NextApiResponse) {
   try {
     const { data } = await check_email(email)
     if (data.user !== null) {
-      return res.status(200).json({ user_exists: true, use_captcha: true })
+      return res.status(200).json({ user_exists: true, message: '该邮箱已被注册' })
     }
   } catch (err) {
     return res.status(500).json({ message: '服务器错误' })
   }
 
-  return res.status(200).json({ user_exists: false, use_captcha: false })
+  return res.status(200).json({ user_exists: false, message: '该邮箱可以注册' })
 }
 
 export default handler

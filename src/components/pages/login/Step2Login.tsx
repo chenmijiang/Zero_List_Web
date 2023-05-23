@@ -4,6 +4,8 @@ import styled from 'styled-components'
 
 import ScrollLoadingAnimation from '@/components/common/ScrollLoadingAnimation'
 import { debounce, throttle } from '@/utils'
+import toast from 'react-hot-toast'
+import request from '@/utils/request'
 
 type Props = {
   nextStep: (step: number) => void
@@ -29,41 +31,42 @@ const Step2Login = (props: Props) => {
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const password = inputPasswordRef.current?.value
     const name = inputNameRef.current?.value
 
     if (!password || !name) return
 
-    try {
-      setLoading(true)
-      // TODO: 使用 request 重构代码
-      // fetch 请求 post
-      const res = await fetch(`/api/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+    setLoading(true)
+
+    toast.promise(
+      request(
+        'post',
+        '/api/register',
+        null,
+        {
           email: props.email,
           name: name,
-          password: password,
-          platform: 'web'
-        })
-      })
-
-      const data = await res.json()
-
-      setLoading(false)
-
-      // if (data.user && data.Error === '') {
-      // 注册成功
-      props.nextStep(1)
-      // }
-    } catch (e) {
-      setLoading(false)
-      setError(true)
-    }
+          password: password
+        },
+        {
+          'Content-Type': 'application/json'
+        }
+      ),
+      {
+        loading: '注册中...',
+        success: (data: any) => {
+          setLoading(false)
+          props.nextStep(1)
+          return '注册成功'
+        },
+        error: (err: any) => {
+          setLoading(false)
+          setError(true)
+          return '注册失败'
+        }
+      }
+    )
   }
 
   const [showPassword, setShowPassword] = useState(false)
@@ -242,6 +245,7 @@ const FormContent = styled.div`
   .textfield--disabled {
     cursor: not-allowed;
   }
+
   .textfield {
     padding: 0 var(--TextField-padding-h);
     display: flex;
@@ -271,6 +275,7 @@ const FormContent = styled.div`
     height: 100%;
     margin: 0;
   }
+
   .input {
     width: 100%;
     padding: 0;
@@ -295,7 +300,7 @@ const FormContent = styled.div`
   }
 
   .submitButton {
-    height: var(--ButtonRounded-height);
+    //height: var(--ButtonRounded-height);
     padding: 0 1.5em;
     margin: 0;
     position: relative;
@@ -303,13 +308,13 @@ const FormContent = styled.div`
     background-color: transparent;
     background-image: none;
     border: thin solid;
-    border-radius: var(--ButtonRounded-borderRadius);
-    font-size: var(--font-size-text-xsm);
+    //border-radius: var(--ButtonRounded-borderRadius);
+    //font-size: var(--font-size-text-xsm);
     -webkit-user-select: none;
     user-select: none;
-    transition: var(--animation-speed-focus-ring) box-shadow,
-      var(--animation-speed-medium) background-color, var(--animation-speed-medium) color,
-      var(--animation-speed-medium) border-color, var(--animation-speed-fast) opacity;
+    //transition: var(--animation-speed-focus-ring) box-shadow,
+    //  var(--animation-speed-medium) background-color, var(--animation-speed-medium) color,
+    //  var(--animation-speed-medium) border-color, var(--animation-speed-fast) opacity;
 
     height: 60px;
     border-radius: 30px;
